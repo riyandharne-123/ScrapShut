@@ -9,9 +9,7 @@
     <title>Scrap Shut</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
-<!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
 
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -36,45 +34,36 @@
      var json_data='';
      console.log(data);
      $.each(data.results,function(key,value){
-json_data+='<tr >';
-  json_data+='<td class="text-danger" >'+value.id+'</td>';
-  json_data+='<td class="text-warning">'+value.title+'</td>';
-  json_data+='<td class="text-primary" >'+value.rate+'</td>';
-  json_data+='<td class="text-success">'+value.author+'</td>';
-  json_data+='<td   class="text-dark">'+value.content+'</td>';
-  json_data+='<td  class="text-danger">'+value.review+'</td>';
-  json_data+='<td >'+'<a href='+value.url+'>'+value.url+'</a>'+'</td>';
-  json_data+='</tr>';
+json_data+='<div class="row" align="center" >';
+json_data+='<div class="col s12 m6" >';
+json_data+=' <div class="card blue-grey darken-1">';
+json_data+='<div class="card-content white-text">';
+json_data+='<span class="card-title">'+'<h3>'+value.author+'</h3>'+'</span>';
+json_data+='<h5>'+'ID: '+value.id+'</h5>';
+json_data+='<h5>'+'Time of Publishing: '+value.created_at+'</h5>';
+json_data+='<h5>'+'Review: '+value.review+'</h5>';
+json_data+='<h5>'+'Rating: '+value.rate+'/5'+'</h5>';
+json_data+='<div class="card-action">'+
+'<a href="'+value.url+'">'+value.url+'</a>';
+json_data+='</div>';
+json_data+='</div>';
+json_data+='</div>';
+json_data+='</div>';
+json_data+='</div>';
      });
-     $('#table').append(json_data);
+     $('#dynamic-content').append(json_data);
     });
       });
       </script>
-
-<table id="table" data-aos="fade-left" class=" table-striped table-hover">
   <style>
-    table,h5{
-      font-weight: 700;
-      font-family: Arial, Helvetica, sans-serif;
-      font-style: italic;
-    }
-    table{
-      padding: 10px;
-    }
+   
     body{
       background-color: #fff;
     }
+
   </style>
-  <tr class="text-primary">
-  <th><h5>ID</h5></th>
-  <th><h5>title</h5></th>  
-  <th><h5>rating</h5></th> 
-  <th><h5>author</h5></th> 
-   <th><h5>content</h5></th> 
-    <th><h5>review</h5></th> 
-     <th><h5>URL</h5></th> 
-</tr>
-</table>
+ <div id="dynamic-content"  data-aos="fade-left">
+ </div>
        
 </body>
 </html>
