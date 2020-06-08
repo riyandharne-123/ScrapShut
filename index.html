@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <IfModule mod_headers.c style="display: none;">
+        Header set Access-Control-Allow-Origin "*"
+        </IfModule>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrap Shut</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+  duration:2000,
+  });
+</script>
+  </head>
+<body>
+    <!--NAVBAR-->
+    
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo center">Jquery Ajax</a>
+    </div>
+  </nav>
+  <!--dyanmic data-->
+  <script>
+  $(document).ready(function(){
+    $.getJSON("https://backend.scrapshut.com/api/service/post/",function(data){
+     var json_data='';
+     console.log(data);
+     $.each(data.results,function(key,value){
+json_data+='<tr >';
+  json_data+='<td class="text-danger" >'+value.id+'</td>';
+  json_data+='<td class="text-warning">'+value.title+'</td>';
+  json_data+='<td class="text-primary" >'+value.rate+'</td>';
+  json_data+='<td class="text-success">'+value.author+'</td>';
+  json_data+='<td   class="text-dark">'+value.content+'</td>';
+  json_data+='<td  class="text-danger">'+value.review+'</td>';
+  json_data+='<td >'+'<a href='+value.url+'>'+value.url+'</a>'+'</td>';
+  json_data+='</tr>';
+     });
+     $('#table').append(json_data);
+    });
+      });
+      </script>
+
+<table id="table" data-aos="fade-left" class=" table-striped table-hover">
+  <style>
+    table,h5{
+      font-weight: 700;
+      font-family: Arial, Helvetica, sans-serif;
+      font-style: italic;
+    }
+    table{
+      padding: 10px;
+    }
+    body{
+      background-color: #fff;
+    }
+  </style>
+  <tr class="text-primary">
+  <th><h5>ID</h5></th>
+  <th><h5>title</h5></th>  
+  <th><h5>rating</h5></th> 
+  <th><h5>author</h5></th> 
+   <th><h5>content</h5></th> 
+    <th><h5>review</h5></th> 
+     <th><h5>URL</h5></th> 
+</tr>
+</table>
+       
+</body>
+</html>
